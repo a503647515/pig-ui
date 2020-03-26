@@ -1,8 +1,8 @@
 import axios from 'axios'
 import store from '../store'
 import router from './index'
-import { getToken, setToken, removeToken } from '@/util/auth'
-import { Message } from 'element-ui'
+import {getToken, setToken, removeToken} from '@/util/auth'
+import {Message} from 'element-ui'
 import errorCode from '@/const/errorCode'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css'// progress bar style
@@ -11,13 +11,14 @@ import 'nprogress/nprogress.css'// progress bar style
 axios.defaults.timeout = 30000
 // 跨域请求，允许保存cookie
 axios.defaults.withCredentials = true
-NProgress.configure({ showSpinner: false })// NProgress Configuration
+NProgress.configure({showSpinner: false})// NProgress Configuration
 
 // HTTPrequest拦截
 axios.interceptors.request.use(config => {
   NProgress.start() // start progress bar
-  if (store.getters.access_token) {
-    config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
+  const accessToken = getToken()
+  if (accessToken) {
+    config.headers['Authorization'] = 'Bearer ' + accessToken
   }
   return config
 }, error => {
@@ -39,7 +40,7 @@ axios.interceptors.response.use(data => {
 
   if (parseInt(code) === 401) {
     store.dispatch('FedLogOut').then(() => {
-      router.push({ path: '/login' })
+      router.push({path: '/login'})
     })
   }
 

@@ -12,14 +12,9 @@ import store from './store'
 import qs from 'qs'
 import AVUE from 'avue-cli/lib/avue.js'
 
-import {
-  loadStyle
-} from './util/util'
+import {loadStyle} from './util/util'
 import * as urls from '@/config/env'
-import {
-  iconfontUrl,
-  iconfontVersion
-} from '@/config/env'
+import {iconfontUrl, iconfontVersion} from '@/config/env'
 import * as filters from './filters' // 全局filter
 import './styles/common.scss'
 

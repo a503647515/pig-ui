@@ -1,6 +1,6 @@
 let path = require('path')
-
-let baseUrl =  process.env.NODE_ENV === 'production'?'http://111.229.233.16:9999':'http://192.168.0.2:9999';
+// let targetUrl = 'http://192.168.0.2:9999'
+let targetUrl = 'http://47.105.163.104:9999'
 module.exports = {
   build: {
     env: require('./prod.env'),
@@ -22,14 +22,14 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/auth': {
-        target: baseUrl,
+        target: targetUrl,
         changeOrigin: true,
         pathRewrite: {
           '^/auth': '/auth'
         }
       },
       '/admin': {
-        target: baseUrl,
+        target: targetUrl,
         changeOrigin: true,
         pathRewrite: {
           '^/admin': '/admin'
