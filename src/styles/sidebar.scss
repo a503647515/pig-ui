@@ -1,0 +1,21 @@
+.sidebar-container {
+  background: rgb(48, 65, 86);
+  transition: width .6s;
+  &.is-active {
+    width: 64px !important;
+  }
+}
+
+.el-menu-item.is-active {
+  color: $mainBg !important;
+}
+.el-submenu .el-menu-item {
+  background-color: #1f2d3d !important;
+}
+
+.el-submenu .el-menu-item:hover {
+  background-color: #001528 !important;
+}
+.el-submenu__title:hover{
+  background-color: rgba(38, 52, 69, 1) !important;
+}
